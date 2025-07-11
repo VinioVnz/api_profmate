@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "esnext",                                 
+    "module": "commonjs",                                
+    "strict": true,                                    
+    "rootDir": "./src",
+    "outDir": ".dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+  },
+  "include": ["src"]
+}
