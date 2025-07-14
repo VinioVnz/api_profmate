@@ -9,26 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Aula = void 0;
+exports.Usuario = void 0;
 const typeorm_1 = require("typeorm");
-let Aula = class Aula {
+let Usuario = class Usuario {
     id;
-    data;
-    nomeAluno;
+    nome;
+    email;
+    password;
 };
-exports.Aula = Aula;
+exports.Usuario = Usuario;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Aula.prototype, "id", void 0);
+], Usuario.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Aula.prototype, "data", void 0);
+], Usuario.prototype, "nome", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Aula.prototype, "nomeAluno", void 0);
-exports.Aula = Aula = __decorate([
-    (0, typeorm_1.Entity)("aulas")
-], Aula);
+], Usuario.prototype, "email", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Usuario.prototype, "password", void 0);
+exports.Usuario = Usuario = __decorate([
+    (0, typeorm_1.Entity)('usuarios')
+], Usuario);

@@ -10,7 +10,8 @@ exports.AulaController = {
             const aula = await AulaService_1.AulaService.getAll();
             res.json(aula);
         }
-        catch {
+        catch (error) {
+            console.log(error);
             res.status(500).json({ error: serverError });
         }
     },
@@ -28,8 +29,7 @@ exports.AulaController = {
     async create(req, res) {
         try {
             const aula = await AulaService_1.AulaService.create(req.body);
-            if (!aula)
-                res.status(201).json(aula);
+            res.status(201).json(aula);
         }
         catch {
             res.status(500).json({ error: serverError });
