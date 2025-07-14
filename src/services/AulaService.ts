@@ -14,6 +14,7 @@ export const AulaService = {
 
     async create(data: Partial<Aula>): Promise<Aula>{
         const aula = repo.create(data)
+
         await repo.save(aula)
         return aula;
     },

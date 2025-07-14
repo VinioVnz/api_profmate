@@ -4,7 +4,7 @@
     "module": "commonjs",                                
     "strict": true,                                    
     "rootDir": "./src",
-    "outDir": ".dist",
+    "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "emitDecoratorMetadata": true,
