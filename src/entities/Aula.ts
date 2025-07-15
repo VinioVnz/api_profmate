@@ -1,13 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Aluno } from "./Aluno";
 
 @Entity("aulas")
-export class Aula{
-    @PrimaryGeneratedColumn()
-    id!: number;
+export class Aula {
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column()
-    data!: string;
+  @Column()
+  data!: string;
 
-    @Column()
-    nomeAluno!: string
+  @ManyToOne(() => Aluno, aluno => aluno.aulas, { onDelete: "CASCADE" })
+  aluno!: Aluno;
 }

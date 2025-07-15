@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
 export class CreateAula1752274381428 implements MigrationInterface {
 
@@ -6,7 +6,7 @@ export class CreateAula1752274381428 implements MigrationInterface {
         await queryRunner.createTable(
             new Table({
                 name: "aulas",
-                columns:[
+                columns: [
                     {
                         name: "id",
                         type: "int",
@@ -19,12 +19,22 @@ export class CreateAula1752274381428 implements MigrationInterface {
                         type: "varchar"
                     },
                     {
-                        name: "nomeAluno",
-                        type: "varchar"
+                        name: "aluno_id",
+                        type: "int"
                     }
                 ]
             })
-        )
+        );
+        //aqui é pra criar a fk da tabela
+        await queryRunner.createForeignKey(
+            "aulas",
+            new TableForeignKey({
+                columnNames: ["aluno_id"],
+                referencedTableName: "alunos",
+                referencedColumnNames: ["id"],
+                onDelete: "CASCADE", // remove aulas se aluno for deletado
+            })
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

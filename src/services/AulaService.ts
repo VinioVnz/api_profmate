@@ -5,7 +5,9 @@ const repo = AppDataSource.getRepository(Aula)
 
 export const AulaService = {
     async getAll(): Promise<Aula[]> {
-        return await repo.find()
+        return await repo.find({
+            relations: ["aluno"]
+        })
     },
 
     async getOne(id: number): Promise<Aula | null>{
@@ -14,7 +16,6 @@ export const AulaService = {
 
     async create(data: Partial<Aula>): Promise<Aula>{
         const aula = repo.create(data)
-
         await repo.save(aula)
         return aula;
     },

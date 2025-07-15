@@ -19,10 +19,17 @@ class CreateAula1752274381428 {
                     type: "varchar"
                 },
                 {
-                    name: "nomeAluno",
-                    type: "varchar"
+                    name: "aluno_id",
+                    type: "int"
                 }
             ]
+        }));
+        //aqui é pra criar a fk da tabela
+        await queryRunner.createForeignKey("aulas", new typeorm_1.TableForeignKey({
+            columnNames: ["aluno_id"],
+            referencedTableName: "alunos",
+            referencedColumnNames: ["id"],
+            onDelete: "CASCADE", // remove aulas se aluno for deletado
         }));
     }
     async down(queryRunner) {
