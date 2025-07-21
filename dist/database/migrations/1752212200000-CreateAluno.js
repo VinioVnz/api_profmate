@@ -18,6 +18,23 @@ class CreateAluno1752212200000 {
                     name: "nome",
                     type: "varchar",
                 },
+                {
+                    name: "cpf",
+                    type: "varchar",
+                    isUnique: true
+                },
+                {
+                    name: "endereco",
+                    type: "varchar",
+                },
+                {
+                    name: "telefone",
+                    type: "varchar",
+                },
+                {
+                    name: "dataNascimento",
+                    type: "varchar",
+                },
             ],
         }));
     }

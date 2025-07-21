@@ -9,6 +9,7 @@ const typeorm_1 = require("typeorm");
 const Aula_1 = require("../entities/Aula");
 const Usuario_1 = require("../entities/Usuario");
 const Aluno_1 = require("../entities/Aluno");
+const Pagamento_1 = require("../entities/Pagamento");
 dotenv_1.default.config();
 exports.AppDataSource = new typeorm_1.DataSource({
     type: 'mysql',
@@ -17,7 +18,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [Aula_1.Aula, Usuario_1.Usuario, Aluno_1.Aluno],
+    entities: [Aula_1.Aula, Usuario_1.Usuario, Aluno_1.Aluno, Pagamento_1.Pagamento],
     migrations: ['dist/database/migrations/*.js'],
     synchronize: Boolean(process.env.DB_SYNC),
 });

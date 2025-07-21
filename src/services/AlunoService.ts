@@ -5,11 +5,15 @@ const repo = AppDataSource.getRepository(Aluno)
 
 export const AlunoService = {
     async getAll(): Promise<Aluno[]> {
-        return await repo.find()
+        return await repo.find({ relations: ["pagamentos"] })
     },
 
     async getOne(id: number): Promise<Aluno | null>{
-        return await repo.findOneBy({id})
+        return await repo.findOne({
+            where: {id},
+            relations:['pagamentos']
+
+        })
     },
 
     async create(data: Partial<Aluno>): Promise<Aluno>{
@@ -23,7 +27,7 @@ export const AlunoService = {
         if(!aluno) return null
         repo.merge(aluno, data)
 
-        repo.save(aluno)
+        await repo.save(aluno)
         return aluno;
     },
     

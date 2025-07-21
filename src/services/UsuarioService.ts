@@ -10,6 +10,7 @@ type UsuarioRetorno = {
     email: string
 }
 
+
 export const UsuarioService = {
     async getAll(): Promise<Usuario[]> {
         return await repo.find({

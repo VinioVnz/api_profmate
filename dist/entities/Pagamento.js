@@ -9,53 +9,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Aluno = void 0;
+exports.Pagamento = void 0;
 const typeorm_1 = require("typeorm");
-const Aula_1 = require("./Aula");
-const Pagamento_1 = require("./Pagamento");
-let Aluno = class Aluno {
+const Aluno_1 = require("./Aluno");
+let Pagamento = class Pagamento {
     id;
-    nome;
-    cpf;
-    endereco;
-    telefone;
-    dataNascimento;
-    aulas;
-    pagamentos;
+    valorAula;
+    vencimento;
+    formaPagamento;
+    frequenciaPagamento;
+    nomeResponsavel;
+    cpfResponsavel;
+    aluno;
 };
-exports.Aluno = Aluno;
+exports.Pagamento = Pagamento;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Aluno.prototype, "id", void 0);
+], Pagamento.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Pagamento.prototype, "valorAula", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Aluno.prototype, "nome", void 0);
+], Pagamento.prototype, "vencimento", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Aluno.prototype, "cpf", void 0);
+], Pagamento.prototype, "formaPagamento", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Aluno.prototype, "endereco", void 0);
+], Pagamento.prototype, "frequenciaPagamento", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Aluno.prototype, "telefone", void 0);
+], Pagamento.prototype, "nomeResponsavel", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Aluno.prototype, "dataNascimento", void 0);
+], Pagamento.prototype, "cpfResponsavel", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => Aula_1.Aula, aula => aula.aluno),
-    __metadata("design:type", Array)
-], Aluno.prototype, "aulas", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => Pagamento_1.Pagamento, (pagamento) => pagamento.aluno),
-    __metadata("design:type", Array)
-], Aluno.prototype, "pagamentos", void 0);
-exports.Aluno = Aluno = __decorate([
-    (0, typeorm_1.Entity)("alunos")
-], Aluno);
+    (0, typeorm_1.ManyToOne)(() => Aluno_1.Aluno, (aluno) => aluno.pagamentos),
+    (0, typeorm_1.JoinColumn)({ name: "aluno_id" }),
+    __metadata("design:type", Aluno_1.Aluno)
+], Pagamento.prototype, "aluno", void 0);
+exports.Pagamento = Pagamento = __decorate([
+    (0, typeorm_1.Entity)("pagamentos")
+], Pagamento);

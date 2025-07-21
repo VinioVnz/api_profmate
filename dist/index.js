@@ -8,6 +8,7 @@ require("reflect-metadata");
 const aula_routes_1 = __importDefault(require("./routes/aula.routes"));
 const usuario_routes_1 = __importDefault(require("./routes/usuario.routes"));
 const auth_routes_1 = __importDefault(require("./routes/auth.routes"));
+const aluno_routes_1 = __importDefault(require("./routes/aluno.routes"));
 const data_source_1 = require("./database/data-source");
 require('dotenv').config();
 data_source_1.AppDataSource.initialize()
@@ -17,6 +18,7 @@ data_source_1.AppDataSource.initialize()
     app.use('/aulas', aula_routes_1.default);
     app.use('/usuarios', usuario_routes_1.default);
     app.use('/login', auth_routes_1.default);
+    app.use('/alunos', aluno_routes_1.default);
     app.listen(process.env.PORT, () => {
         console.log('Servidor rodando na porta: ', process.env.PORT);
     });

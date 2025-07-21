@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AulaController = void 0;
-const AulaService_1 = require("../services/AulaService");
-const notFound = "Aula não encontrada!";
+exports.AlunoController = void 0;
+const AlunoService_1 = require("../services/AlunoService");
+const notFound = "Aluno não encontrada!";
 const serverError = "Erro ao realizar a operação!";
-exports.AulaController = {
+exports.AlunoController = {
     async getAll(req, res) {
         try {
-            const aula = await AulaService_1.AulaService.getAll();
-            res.json(aula);
+            const aluno = await AlunoService_1.AlunoService.getAll();
+            res.json(aluno);
         }
         catch (error) {
             console.log(error);
@@ -17,10 +17,10 @@ exports.AulaController = {
     },
     async getOne(req, res) {
         try {
-            const aula = await AulaService_1.AulaService.getOne(Number(req.params.id));
-            if (!aula)
+            const aluno = await AlunoService_1.AlunoService.getOne(Number(req.params.id));
+            if (!aluno)
                 res.status(404).json({ error: notFound });
-            res.json(aula);
+            res.json(aluno);
         }
         catch {
             res.status(500).json({ error: serverError });
@@ -28,10 +28,8 @@ exports.AulaController = {
     },
     async create(req, res) {
         try {
-            const aula = await AulaService_1.AulaService.create(req.body);
-            if (!aula)
-                res.status(404).json({ error: "Aluno não encontrado" });
-            res.status(201).json(aula);
+            const aluno = await AlunoService_1.AlunoService.create(req.body);
+            res.status(201).json(aluno);
         }
         catch {
             res.status(500).json({ error: serverError });
@@ -39,10 +37,10 @@ exports.AulaController = {
     },
     async update(req, res) {
         try {
-            const updateData = await AulaService_1.AulaService.update(Number(req.params.id), req.body);
+            const updateData = await AlunoService_1.AlunoService.update(Number(req.params.id), req.body);
             if (!updateData)
                 res.status(404).json({ error: notFound });
-            res.json('Aula editada com sucesso');
+            res.json('Aluno editado com sucesso');
         }
         catch {
             res.status(500).json({ error: serverError });
@@ -50,10 +48,10 @@ exports.AulaController = {
     },
     async delete(req, res) {
         try {
-            const delAula = await AulaService_1.AulaService.delete(Number(req.params.id));
-            if (!delAula)
+            const delAluno = await AlunoService_1.AlunoService.delete(Number(req.params.id));
+            if (!delAluno)
                 res.status(404).json({ error: notFound });
-            res.json("Aula deletada com sucesso!");
+            res.json("Aluno deletado com sucesso!");
         }
         catch {
             res.status(500).json({ error: serverError });

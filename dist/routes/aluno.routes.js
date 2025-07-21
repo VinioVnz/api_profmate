@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const AlunoController_1 = require("../controllers/AlunoController");
+const routes = (0, express_1.Router)();
+routes.get('/', AlunoController_1.AlunoController.getAll);
+routes.get('/:id', AlunoController_1.AlunoController.getOne);
+routes.post('/', AlunoController_1.AlunoController.create);
+routes.put('/:id', AlunoController_1.AlunoController.update);
+routes.delete('/:id', AlunoController_1.AlunoController.delete);
+exports.default = routes;

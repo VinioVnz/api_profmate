@@ -4,7 +4,7 @@
     "build": "tsc",
     "deploy": "npm install && npm run build && typeorm migration:run -d ./dist/database/data-source.js",
     "migration:run": "npm run build && typeorm migration:run -d ./dist/database/data-source.js",
-    "migration:revert": "typeorm migration:revert -d ./dist/database/data-source.js",
+    "migration:revert": "npx typeorm migration:revert -d ./dist/database/data-source.js",
     "start": "node dist/index.js"
   },
   "dependencies": {
