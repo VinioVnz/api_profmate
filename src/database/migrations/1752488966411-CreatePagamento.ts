@@ -33,14 +33,6 @@ export class CreatePagamento1752488966411 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "nomeResponsavel",
-            type: "varchar",
-          },
-          {
-            name: "cpfResponsavel",
-            type: "varchar",
-          },
-          {
             name: "aluno_id",
             type: "int",
           },

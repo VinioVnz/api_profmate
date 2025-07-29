@@ -18,8 +18,6 @@ let Pagamento = class Pagamento {
     vencimento;
     formaPagamento;
     frequenciaPagamento;
-    nomeResponsavel;
-    cpfResponsavel;
     aluno;
 };
 exports.Pagamento = Pagamento;
@@ -43,14 +41,6 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Pagamento.prototype, "frequenciaPagamento", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Pagamento.prototype, "nomeResponsavel", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Pagamento.prototype, "cpfResponsavel", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Aluno_1.Aluno, (aluno) => aluno.pagamentos),
     (0, typeorm_1.JoinColumn)({ name: "aluno_id" }),

@@ -18,13 +18,7 @@ export class Pagamento {
 
   @Column()
   frequenciaPagamento!: string;
-
-  @Column()
-  nomeResponsavel!: string;
-
-  @Column()
-  cpfResponsavel!: string;
-
+  
   @ManyToOne(() => Aluno, (aluno) => aluno.pagamentos)
   @JoinColumn({ name: "aluno_id" })
   aluno!: Aluno;
