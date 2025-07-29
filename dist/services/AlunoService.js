@@ -6,10 +6,13 @@ const Aluno_1 = require("../entities/Aluno");
 const repo = data_source_1.AppDataSource.getRepository(Aluno_1.Aluno);
 exports.AlunoService = {
     async getAll() {
-        return await repo.find();
+        return await repo.find({ relations: ["pagamentos"] });
     },
     async getOne(id) {
-        return await repo.findOneBy({ id });
+        return await repo.findOne({
+            where: { id },
+            relations: ['pagamentos']
+        });
     },
     async create(data) {
         const aluno = repo.create(data);
@@ -21,7 +24,7 @@ exports.AlunoService = {
         if (!aluno)
             return null;
         repo.merge(aluno, data);
-        repo.save(aluno);
+        await repo.save(aluno);
         return aluno;
     },
     async delete(id) {

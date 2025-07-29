@@ -25,9 +25,9 @@ export const AuthService = {
             //retornar os dados do usuario com o token
             return {
                 user: {
-                    id: user.id,
-                    nome: user.nome,
-                    email: user.email
+                    id: user!.id,
+                    nome: user!.nome,
+                    email: user!.email
                 },
                 token
             }

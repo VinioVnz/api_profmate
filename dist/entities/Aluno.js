@@ -17,9 +17,12 @@ let Aluno = class Aluno {
     id;
     nome;
     cpf;
+    email;
     endereco;
     telefone;
     dataNascimento;
+    nomeResponsavel;
+    cpfResponsavel;
     aulas;
     pagamentos;
 };
@@ -39,6 +42,10 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
+], Aluno.prototype, "email", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
 ], Aluno.prototype, "endereco", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
@@ -48,6 +55,14 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Aluno.prototype, "dataNascimento", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Aluno.prototype, "nomeResponsavel", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Aluno.prototype, "cpfResponsavel", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => Aula_1.Aula, aula => aula.aluno),
     __metadata("design:type", Array)

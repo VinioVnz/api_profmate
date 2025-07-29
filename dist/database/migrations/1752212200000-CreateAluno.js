@@ -24,6 +24,10 @@ class CreateAluno1752212200000 {
                     isUnique: true
                 },
                 {
+                    name: "email",
+                    type: "varchar"
+                },
+                {
                     name: "endereco",
                     type: "varchar",
                 },
@@ -34,6 +38,17 @@ class CreateAluno1752212200000 {
                 {
                     name: "dataNascimento",
                     type: "varchar",
+                },
+                {
+                    name: "nomeResponsavel",
+                    type: "varchar",
+                    isNullable: true
+                },
+                {
+                    name: "cpfResponsavel",
+                    type: "varchar",
+                    isUnique: true,
+                    isNullable: true
                 },
             ],
         }));

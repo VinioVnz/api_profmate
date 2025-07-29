@@ -13,6 +13,9 @@ export class Aluno {
   cpf!: string;
 
   @Column()
+  email!: string;
+
+  @Column()
   endereco!: string;
 
   @Column()
@@ -20,6 +23,12 @@ export class Aluno {
 
   @Column()
   dataNascimento!: string;
+
+  @Column()
+  nomeResponsavel!: string;
+
+  @Column()
+  cpfResponsavel!: string;
 
   @OneToMany(() => Aula, aula => aula.aluno)
   aulas!: Aula[];
