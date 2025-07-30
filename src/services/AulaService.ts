@@ -39,4 +39,6 @@ export const AulaService = {
         await repo.remove(aula)
         return aula;
     }
+
+    
 }
