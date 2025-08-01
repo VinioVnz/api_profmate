@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, IsNull } from "typeorm";
 import { Aula } from "./Aula";
 import { Pagamento } from "./Pagamento";
 @Entity("alunos")
@@ -24,10 +24,10 @@ export class Aluno {
   @Column()
   dataNascimento!: string;
 
-  @Column()
+  @Column({nullable: true})
   nomeResponsavel!: string;
 
-  @Column()
+  @Column({nullable: true})
   cpfResponsavel!: string;
 
   @OneToMany(() => Aula, aula => aula.aluno)
