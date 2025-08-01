@@ -1,11 +1,11 @@
-import dotenv from 'dotenv'
-import { DataSource } from 'typeorm'
-import { Aula } from '../entities/Aula'
-import { Usuario } from '../entities/Usuario'
-import { Aluno } from '../entities/Aluno'
-import { Pagamento } from '../entities/Pagamento'
-
-dotenv.config()
+import 'reflect-metadata';
+import 'dotenv/config';
+import { DataSource } from 'typeorm';
+import { Aula } from '../entities/Aula';
+import { Usuario } from '../entities/Usuario';
+import { Aluno } from '../entities/Aluno';
+import { Pagamento } from '../entities/Pagamento';
+import { Tarefa } from '../entities/Tarefa';
 
 export const AppDataSource = new DataSource({
     type: 'mysql',
@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [Aula, Usuario, Aluno, Pagamento],
+    entities: [Aula, Usuario, Aluno, Pagamento, Tarefa],
     migrations: ['dist/database/migrations/*.js'],
     synchronize: Boolean(process.env.DB_SYNC),
-})
+});

@@ -9,37 +9,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Usuario = void 0;
+exports.Tarefa = void 0;
 const typeorm_1 = require("typeorm");
-const Tarefa_1 = require("./Tarefa");
-let Usuario = class Usuario {
+const Usuario_1 = require("./Usuario");
+let Tarefa = class Tarefa {
     id;
-    nome;
-    email;
-    password;
-    tarefas;
+    titulo;
+    descricao;
+    dataEntrega;
+    usuario;
 };
-exports.Usuario = Usuario;
+exports.Tarefa = Tarefa;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Usuario.prototype, "id", void 0);
+], Tarefa.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Usuario.prototype, "nome", void 0);
+], Tarefa.prototype, "titulo", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Usuario.prototype, "email", void 0);
+], Tarefa.prototype, "descricao", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Usuario.prototype, "password", void 0);
+    __metadata("design:type", Date)
+], Tarefa.prototype, "dataEntrega", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => Tarefa_1.Tarefa, (tarefa) => tarefa.usuario),
-    __metadata("design:type", Array)
-], Usuario.prototype, "tarefas", void 0);
-exports.Usuario = Usuario = __decorate([
-    (0, typeorm_1.Entity)("usuarios")
-], Usuario);
+    (0, typeorm_1.ManyToOne)(() => Usuario_1.Usuario, (usuario) => usuario.tarefas),
+    (0, typeorm_1.JoinColumn)({ name: "usuario_id" }),
+    __metadata("design:type", Usuario_1.Usuario)
+], Tarefa.prototype, "usuario", void 0);
+exports.Tarefa = Tarefa = __decorate([
+    (0, typeorm_1.Entity)("tarefas")
+], Tarefa);
