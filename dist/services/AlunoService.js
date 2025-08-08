@@ -28,10 +28,20 @@ exports.AlunoService = {
         return aluno;
     },
     async delete(id) {
-        const aluno = await repo.findOneBy({ id });
-        if (!aluno)
-            return null;
-        await repo.remove(aluno);
-        return aluno;
+        console.log('Tentando deletar aluno com ID:', id);
+        try {
+            const aluno = await repo.findOneBy({ id });
+            if (!aluno) {
+                console.log('Aluno não encontrado no banco para o ID:', id);
+                return null;
+            }
+            await repo.remove(aluno);
+            console.log('Aluno removido:', aluno);
+            return aluno;
+        }
+        catch (error) {
+            console.error('Erro ao tentar deletar aluno:', error);
+            throw error; // ou trate o erro como quiser
+        }
     }
 };
