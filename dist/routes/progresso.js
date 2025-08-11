@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const routes = (0, express_1.Router)();
+const ProgressoController_1 = require("../controllers/ProgressoController");
+routes.get('/', ProgressoController_1.ProgressoController.getAll);
+routes.post('/', ProgressoController_1.ProgressoController.create);
+routes.get('/:id', ProgressoController_1.ProgressoController.getOne);
+routes.put('/:id', ProgressoController_1.ProgressoController.update);
+routes.delete('/:id', ProgressoController_1.ProgressoController.delete);

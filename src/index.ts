@@ -6,6 +6,7 @@ import userRoutes from './routes/usuario.routes'
 import routeLogin from './routes/auth.routes'
 import alunoRoutes from './routes/aluno.routes'
 import pagamentoRoutes from './routes/pagamento.routes'
+import progressoRoutes from './routes/progresso.routes'
 import { AppDataSource } from "./database/data-source";
 import { Usuario } from "./entities/Usuario";
 const bcrypt = require('bcrypt')
@@ -37,6 +38,7 @@ AppDataSource.initialize()
         app.use('/login', routeLogin)
         app.use('/alunos', alunoRoutes)
         app.use('/pagamentos', pagamentoRoutes)
+        app.use('/progresso', progressoRoutes)
         app.listen(process.env.PORT, () => {
             console.log('Servidor rodando na porta: ', process.env.PORT);
 
