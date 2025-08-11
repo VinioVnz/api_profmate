@@ -28,6 +28,7 @@ __decorate([
 ], Aula.prototype, "data", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Aluno_1.Aluno, aluno => aluno.aulas, { onDelete: "CASCADE" }),
+    (0, typeorm_1.JoinColumn)({ name: "aluno_id" }),
     __metadata("design:type", Aluno_1.Aluno)
 ], Aula.prototype, "aluno", void 0);
 exports.Aula = Aula = __decorate([

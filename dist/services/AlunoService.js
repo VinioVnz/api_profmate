@@ -3,7 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AlunoService = void 0;
 const data_source_1 = require("../database/data-source");
 const Aluno_1 = require("../entities/Aluno");
+const Pagamento_1 = require("../entities/Pagamento");
 const repo = data_source_1.AppDataSource.getRepository(Aluno_1.Aluno);
+const pagamentoRepo = data_source_1.AppDataSource.getRepository(Pagamento_1.Pagamento);
 exports.AlunoService = {
     async getAll() {
         return await repo.find({ relations: ["pagamentos"] });
@@ -28,20 +30,15 @@ exports.AlunoService = {
         return aluno;
     },
     async delete(id) {
-        console.log('Tentando deletar aluno com ID:', id);
-        try {
-            const aluno = await repo.findOneBy({ id });
-            if (!aluno) {
-                console.log('Aluno não encontrado no banco para o ID:', id);
-                return null;
-            }
-            await repo.remove(aluno);
-            console.log('Aluno removido:', aluno);
-            return aluno;
-        }
-        catch (error) {
-            console.error('Erro ao tentar deletar aluno:', error);
-            throw error; // ou trate o erro como quiser
-        }
+        const aluno = await repo.findOneBy({ id });
+        if (!aluno)
+            return null;
+        await pagamentoRepo
+            .createQueryBuilder()
+            .delete()
+            .where("aluno_id = :id", { id })
+            .execute();
+        await repo.remove(aluno);
+        return aluno;
     }
 };
