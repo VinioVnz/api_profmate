@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const routes = (0, express_1.Router)();
+const EmentasController_1 = require("../controllers/EmentasController");
+routes.get('/', EmentasController_1.EmentasController.getAll);
+routes.post('/', EmentasController_1.EmentasController.create);
+routes.get('/:id', EmentasController_1.EmentasController.getOne);
+routes.put('/:id', EmentasController_1.EmentasController.update);
+routes.delete('/:id', EmentasController_1.EmentasController.delete);
+exports.default = routes;

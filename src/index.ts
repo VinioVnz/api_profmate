@@ -6,7 +6,7 @@ import userRoutes from './routes/usuario.routes'
 import routeLogin from './routes/auth.routes'
 import alunoRoutes from './routes/aluno.routes'
 import pagamentoRoutes from './routes/pagamento.routes'
-import progressoRoutes from './routes/progresso.routes'
+import progressoRoutes from './routes/ementas.routes'
 import { AppDataSource } from "./database/data-source";
 import { Usuario } from "./entities/Usuario";
 const bcrypt = require('bcrypt')

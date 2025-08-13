@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateProgresso1754921406590 = void 0;
+exports.CreateEmenta1755005189412 = void 0;
 const typeorm_1 = require("typeorm");
-class CreateProgresso1754921406590 {
+class CreateEmenta1755005189412 {
     async up(queryRunner) {
         await queryRunner.createTable(new typeorm_1.Table({
-            name: "Progresso",
+            name: "ementas",
             columns: [
                 {
                     name: "id",
@@ -23,6 +23,10 @@ class CreateProgresso1754921406590 {
                     type: "varchar",
                 },
                 {
+                    name: "descricao",
+                    type: "varchar",
+                },
+                {
                     name: "concluido",
                     type: "boolean",
                     default: false,
@@ -31,7 +35,6 @@ class CreateProgresso1754921406590 {
         }));
     }
     async down(queryRunner) {
-        await queryRunner.dropTable("Progresso");
     }
 }
-exports.CreateProgresso1754921406590 = CreateProgresso1754921406590;
+exports.CreateEmenta1755005189412 = CreateEmenta1755005189412;

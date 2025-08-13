@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("Progresso")
-export class Progresso {
+@Entity("ementas")
+export class Ementa {
     @PrimaryGeneratedColumn()
     id!: number;
     
@@ -10,6 +10,9 @@ export class Progresso {
     
     @Column()
     topico!: string;
+
+    @Column()
+    descricao!: string;
     
     @Column({ default: false })
     concluido!: boolean;
