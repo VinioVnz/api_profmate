@@ -15,6 +15,11 @@ class CreateUser1752535817960 {
                     generationStrategy: "increment"
                 },
                 {
+                    name: "uid",
+                    type: "varchar",
+                    isUnique: true
+                },
+                {
                     name: "nome",
                     type: "varchar"
                 },
@@ -25,6 +30,15 @@ class CreateUser1752535817960 {
                 {
                     name: "password",
                     type: "varchar"
+                },
+                {
+                    name: "cpf",
+                    type: "varchar",
+                    isUnique: true
+                },
+                {
+                    name: "dataNascimento",
+                    type: "datetime",
                 },
             ]
         }));

@@ -24,8 +24,11 @@ data_source_1.AppDataSource.initialize()
     if (!existeOAdmin) {
         const UserPadrao = {
             nome: 'ADMIN',
+            uid: 'admin',
             email: 'admin',
-            password: await bcrypt.hash('12345', 10)
+            password: await bcrypt.hash('12345', 10),
+            cpf: '000.000.000-00',
+            dataNascimento: new Date('1990-10-25')
         };
         //aqui cria um usuario padrao remvoer quando for pra produção pelo amor de Deus
         const userAdmin = await repo.create(UserPadrao);

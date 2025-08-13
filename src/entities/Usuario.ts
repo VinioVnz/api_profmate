@@ -5,6 +5,8 @@ import { Tarefa } from "./Tarefa";
 export class Usuario {
     @PrimaryGeneratedColumn()
     id!: number;
+    @Column()
+    uid!: string;
 
     @Column()
     nome!: string;
@@ -14,6 +16,12 @@ export class Usuario {
 
     @Column()
     password!: string;
+
+    @Column()
+    cpf!: string;
+
+    @Column({type: 'date'})
+    dataNascimento!: Date;
 
     @OneToMany(() => Tarefa, (tarefa) => tarefa.usuario)
     tarefas!: Tarefa[];

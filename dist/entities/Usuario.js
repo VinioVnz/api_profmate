@@ -14,9 +14,12 @@ const typeorm_1 = require("typeorm");
 const Tarefa_1 = require("./Tarefa");
 let Usuario = class Usuario {
     id;
+    uid;
     nome;
     email;
     password;
+    cpf;
+    dataNascimento;
     tarefas;
 };
 exports.Usuario = Usuario;
@@ -24,6 +27,10 @@ __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], Usuario.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Usuario.prototype, "uid", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
@@ -36,6 +43,14 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Usuario.prototype, "password", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Usuario.prototype, "cpf", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'date' }),
+    __metadata("design:type", Date)
+], Usuario.prototype, "dataNascimento", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => Tarefa_1.Tarefa, (tarefa) => tarefa.usuario),
     __metadata("design:type", Array)
