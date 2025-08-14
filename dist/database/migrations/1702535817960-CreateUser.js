@@ -32,6 +32,10 @@ class CreateUser1752535817960 {
                     type: "varchar"
                 },
                 {
+                    name: "telefone",
+                    type: "varchar"
+                },
+                {
                     name: "cpf",
                     type: "varchar",
                     isUnique: true

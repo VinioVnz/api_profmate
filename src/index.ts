@@ -23,8 +23,9 @@ AppDataSource.initialize()
                 uid: 'admin',
                 email: 'admin',
                 password: await bcrypt.hash('12345', 10),
+                telefone: '(00) 00000-0000',
                 cpf: '000.000.000-00',
-                dataNascimento: new Date('1990-10-25')
+                dataNascimento: new Date('1990-10-25'),
             }
 
             //aqui cria um usuario padrao remvoer quando for pra produção pelo amor de Deus

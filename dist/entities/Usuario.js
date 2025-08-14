@@ -12,15 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Usuario = void 0;
 const typeorm_1 = require("typeorm");
 const Tarefa_1 = require("./Tarefa");
+const Aluno_1 = require("./Aluno");
 let Usuario = class Usuario {
     id;
     uid;
     nome;
     email;
     password;
+    telefone;
     cpf;
     dataNascimento;
     tarefas;
+    alunos;
 };
 exports.Usuario = Usuario;
 __decorate([
@@ -46,6 +49,10 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
+], Usuario.prototype, "telefone", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
 ], Usuario.prototype, "cpf", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'date' }),
@@ -55,6 +62,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => Tarefa_1.Tarefa, (tarefa) => tarefa.usuario),
     __metadata("design:type", Array)
 ], Usuario.prototype, "tarefas", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => Aluno_1.Aluno, (aluno) => aluno.usuario),
+    __metadata("design:type", Array)
+], Usuario.prototype, "alunos", void 0);
 exports.Usuario = Usuario = __decorate([
     (0, typeorm_1.Entity)("usuarios")
 ], Usuario);

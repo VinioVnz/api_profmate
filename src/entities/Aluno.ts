@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, IsNull } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, IsNull, ManyToOne, JoinColumn } from "typeorm";
 import { Aula } from "./Aula";
 import { Pagamento } from "./Pagamento";
+import { Usuario } from "./Usuario";
 @Entity("alunos")
 export class Aluno {
   @PrimaryGeneratedColumn()
@@ -35,4 +36,8 @@ export class Aluno {
 
   @OneToMany(() => Pagamento, (pagamento) => pagamento.aluno)
   pagamentos!: Pagamento[];
+
+  @ManyToOne(() => Usuario, (usuario) => usuario.alunos)
+  @JoinColumn({ name: "usuario_id" })
+    usuario!: Usuario;
 }

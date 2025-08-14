@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Tarefa } from "./Tarefa";
+import { Aluno } from "./Aluno";
 
 @Entity("usuarios")
 export class Usuario {
@@ -18,6 +19,9 @@ export class Usuario {
     password!: string;
 
     @Column()
+    telefone!:string;
+
+    @Column()
     cpf!: string;
 
     @Column({type: 'date'})
@@ -25,4 +29,8 @@ export class Usuario {
 
     @OneToMany(() => Tarefa, (tarefa) => tarefa.usuario)
     tarefas!: Tarefa[];
+
+    @OneToMany(() => Aluno, (aluno) => aluno.usuario)
+    alunos!: Aluno[];
+
 }

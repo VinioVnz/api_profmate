@@ -7,7 +7,8 @@ const serverError = "Erro ao realizar a operação!";
 exports.AlunoController = {
     async getAll(req, res) {
         try {
-            const aluno = await AlunoService_1.AlunoService.getAll();
+            const userId = req.user?.sub;
+            const aluno = await AlunoService_1.AlunoService.getAll(Number(userId));
             res.json(aluno);
         }
         catch (error) {

@@ -7,8 +7,11 @@ const Pagamento_1 = require("../entities/Pagamento");
 const repo = data_source_1.AppDataSource.getRepository(Aluno_1.Aluno);
 const pagamentoRepo = data_source_1.AppDataSource.getRepository(Pagamento_1.Pagamento);
 exports.AlunoService = {
-    async getAll() {
-        return await repo.find({ relations: ["pagamentos"] });
+    async getAll(usuarioId) {
+        return await repo.find({
+            relations: ["pagamentos"],
+            where: { usuario: { id: usuarioId } }
+        });
     },
     async getOne(id) {
         return await repo.findOne({
