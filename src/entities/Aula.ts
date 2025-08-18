@@ -9,8 +9,11 @@ export class Aula {
   @Column()
   data!: string;
 
+  @Column() 
+  horario!: string;
+
   @ManyToOne(() => Aluno, aluno => aluno.aulas, { onDelete: "CASCADE" })
   @JoinColumn({ name: "aluno_id" })
   aluno!: Aluno;
-  
+
 }

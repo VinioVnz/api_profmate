@@ -19,6 +19,10 @@ class CreateAula1752274381428 {
                     type: "varchar"
                 },
                 {
+                    name: "horario",
+                    type: "varchar"
+                },
+                {
                     name: "aluno_id",
                     type: "int"
                 }

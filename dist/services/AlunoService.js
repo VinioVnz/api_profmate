@@ -4,13 +4,15 @@ exports.AlunoService = void 0;
 const data_source_1 = require("../database/data-source");
 const Aluno_1 = require("../entities/Aluno");
 const Pagamento_1 = require("../entities/Pagamento");
+const Usuario_1 = require("../entities/Usuario");
 const repo = data_source_1.AppDataSource.getRepository(Aluno_1.Aluno);
 const pagamentoRepo = data_source_1.AppDataSource.getRepository(Pagamento_1.Pagamento);
+const userRepo = data_source_1.AppDataSource.getRepository(Usuario_1.Usuario);
 exports.AlunoService = {
-    async getAll(usuarioId) {
+    async getAll(uid) {
         return await repo.find({
-            relations: ["pagamentos"],
-            where: { usuario: { id: usuarioId } }
+            relations: ["pagamentos", "usuario"],
+            where: { usuario: { uid } }
         });
     },
     async getOne(id) {
@@ -19,8 +21,11 @@ exports.AlunoService = {
             relations: ['pagamentos']
         });
     },
-    async create(data) {
-        const aluno = repo.create(data);
+    async create(data, uid) {
+        const usuario = await userRepo.findOneBy({ uid });
+        if (!usuario)
+            throw new Error("Usuário não encontrado");
+        const aluno = repo.create({ ...data, usuario });
         await repo.save(aluno);
         return aluno;
     },

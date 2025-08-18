@@ -7,13 +7,14 @@ const serverError = "Erro ao realizar a operação!";
 exports.AlunoController = {
     async getAll(req, res) {
         try {
-            const userId = req.user?.sub;
-            const aluno = await AlunoService_1.AlunoService.getAll(Number(userId));
-            res.json(aluno);
+            // pega o UID do Firebase do usuário logado
+            const uid = req.headers.authorization?.replace("Bearer ", "");
+            const alunos = await AlunoService_1.AlunoService.getAll(uid);
+            res.json(alunos);
         }
         catch (error) {
-            console.log(error);
-            res.status(500).json({ error: serverError });
+            console.error(error);
+            res.status(500).json({ error: "Erro ao realizar a operação!" });
         }
     },
     async getOne(req, res) {
@@ -29,11 +30,19 @@ exports.AlunoController = {
     },
     async create(req, res) {
         try {
-            const aluno = await AlunoService_1.AlunoService.create(req.body);
+            // Pega o UID do header Authorization
+            const uid = req.headers.authorization?.replace("Bearer ", "");
+            if (!uid) {
+                res.status(401).json({ error: "Usuário não logado" });
+                return;
+            }
+            // Cria o aluno passando os dados do body + UID do usuário
+            const aluno = await AlunoService_1.AlunoService.create(req.body, uid);
             res.status(201).json(aluno);
         }
-        catch {
-            res.status(500).json({ error: serverError });
+        catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Erro ao realizar a operação!" });
         }
     },
     async update(req, res) {
