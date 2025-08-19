@@ -1,24 +1,24 @@
 import { AppDataSource } from "../database/data-source";
-import { Ementa } from "../entities/Ementas";
+import { Ementas } from "../entities/Ementas";
 
-const repo = AppDataSource.getRepository(Ementa);
+const repo = AppDataSource.getRepository(Ementas);
 
 export const EmentasService = {
-    async getAll(): Promise<Ementa[]> {
+    async getAll(): Promise<Ementas[]> {
         return await repo.find();
     },
 
-    async getOne(id: number): Promise<Ementa | null> {
+    async getOne(id: number): Promise<Ementas | null> {
         return await repo.findOneBy({ id });
     },
 
-    async create(data: Partial<Ementa>): Promise<Ementa> {
+    async create(data: Partial<Ementas>): Promise<Ementas> {
         const ementas = repo.create(data);
         await repo.save(ementas);
         return ementas;
     },
 
-    async update(id: number, data: Partial<Ementa>): Promise<Ementa | null> {
+    async update(id: number, data: Partial<Ementas>): Promise<Ementas | null> {
         const ementas = await repo.findOneBy({ id });
         if (!ementas) return null;
         repo.merge(ementas, data);
@@ -26,7 +26,7 @@ export const EmentasService = {
         return ementas;
     },
 
-    async delete(id: number): Promise<Ementa | null> {
+    async delete(id: number): Promise<Ementas | null> {
         const ementas = await repo.findOneBy({ id });
         if (!ementas) return null;
         await repo.remove(ementas);
