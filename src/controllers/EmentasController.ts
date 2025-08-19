@@ -27,14 +27,19 @@ export const EmentasController = {
     },
 
     async create(req: Request, res: Response): Promise<void> {
-        try {
-            const ementas = await EmentasService.create(req.body);
-            if (!ementas) res.status(404).json({ error: notFound });
-            res.status(201).json(ementas);
-        } catch {
-            res.status(500).json({ error: serverError });
+    try {
+        const ementas = await EmentasService.create(req.body);
+        if (!ementas) {
+            res.status(404).json({ error: notFound });
+            return;
         }
-    },
+        res.status(201).json(ementas);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: serverError });
+    }
+},
+
 
     async update(req: Request, res: Response): Promise<void> {
         try {
