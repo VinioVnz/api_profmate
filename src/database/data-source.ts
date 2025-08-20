@@ -6,7 +6,7 @@ import { Usuario } from '../entities/Usuario';
 import { Aluno } from '../entities/Aluno';
 import { Pagamento } from '../entities/Pagamento';
 import { Tarefa } from '../entities/Tarefa';
-import { Ementa } from '../entities/Ementas';
+import { Ementas } from '../entities/Ementas';
 export const AppDataSource = new DataSource({
     type: 'mysql',
     host: process.env.DB_HOST,
@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [Aula, Usuario, Aluno, Pagamento, Tarefa,Ementa],
+    entities: [Aula, Usuario, Aluno, Pagamento, Tarefa,Ementas],
     migrations: ['dist/database/migrations/*.js'],
     synchronize: Boolean(process.env.DB_SYNC),
 });

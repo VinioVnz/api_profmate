@@ -9,6 +9,7 @@ import pagamentoRoutes from './routes/pagamento.routes'
 import progressoRoutes from './routes/ementas.routes'
 import { AppDataSource } from "./database/data-source";
 import { Usuario } from "./entities/Usuario";
+import ementasRoutes from './routes/ementas.routes';
 const bcrypt = require('bcrypt')
 require('dotenv').config();
 
@@ -39,6 +40,7 @@ AppDataSource.initialize()
         app.use('/alunos', alunoRoutes)
         app.use('/pagamentos', pagamentoRoutes)
         app.use('/progresso', progressoRoutes)
+        app.use('/ementas', ementasRoutes)
         app.listen(process.env.PORT, () => {
             console.log('Servidor rodando na porta: ', process.env.PORT);
 
