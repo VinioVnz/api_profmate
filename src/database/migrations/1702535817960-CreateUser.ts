@@ -15,6 +15,12 @@ export class CreateUser1752535817960 implements MigrationInterface {
                         generationStrategy: "increment"
                     },
                     {
+                        name: "uid",
+                        type: "varchar",
+                        isUnique: true
+                    },
+                    
+                    {
                         name: "nome",
                         type: "varchar"
                     },
@@ -26,6 +32,20 @@ export class CreateUser1752535817960 implements MigrationInterface {
                         name:"password",
                         type:"varchar"
                     },
+                    {
+                        name:"telefone",
+                        type:"varchar"
+                    },
+                     {
+                        name:"cpf",
+                        type:"varchar",
+                        isUnique:true
+                    },
+                     {
+                        name:"dataNascimento",
+                        type:"datetime",
+                    },
+                    
                 ]
             })
         )

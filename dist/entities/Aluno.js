@@ -13,6 +13,7 @@ exports.Aluno = void 0;
 const typeorm_1 = require("typeorm");
 const Aula_1 = require("./Aula");
 const Pagamento_1 = require("./Pagamento");
+const Usuario_1 = require("./Usuario");
 let Aluno = class Aluno {
     id;
     nome;
@@ -25,6 +26,7 @@ let Aluno = class Aluno {
     cpfResponsavel;
     aulas;
     pagamentos;
+    usuario;
 };
 exports.Aluno = Aluno;
 __decorate([
@@ -71,6 +73,11 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => Pagamento_1.Pagamento, (pagamento) => pagamento.aluno),
     __metadata("design:type", Array)
 ], Aluno.prototype, "pagamentos", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => Usuario_1.Usuario, (usuario) => usuario.alunos),
+    (0, typeorm_1.JoinColumn)({ name: "usuario_id" }),
+    __metadata("design:type", Usuario_1.Usuario)
+], Aluno.prototype, "usuario", void 0);
 exports.Aluno = Aluno = __decorate([
     (0, typeorm_1.Entity)("alunos")
 ], Aluno);

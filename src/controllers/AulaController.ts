@@ -31,6 +31,7 @@ export const AulaController = {
 
     async create(req: Request, res: Response): Promise<void> {
     try {
+    console.log(req.body)
       const aula = await AulaService.create(req.body);
       if (!aula) res.status(404).json({ error: "Aluno não encontrado" });
       res.status(201).json(aula);

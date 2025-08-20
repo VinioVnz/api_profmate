@@ -19,6 +19,10 @@ export class CreateAula1752274381428 implements MigrationInterface {
                         type: "varchar"
                     },
                     {
+                        name:"horario",
+                        type: "varchar"
+                    },
+                    {
                         name: "aluno_id",
                         type: "int"
                     }

@@ -1,10 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Tarefa } from "./Tarefa";
+import { Aluno } from "./Aluno";
 
 @Entity("usuarios")
 export class Usuario {
     @PrimaryGeneratedColumn()
     id!: number;
+    @Column()
+    uid!: string;
 
     @Column()
     nome!: string;
@@ -15,6 +18,19 @@ export class Usuario {
     @Column()
     password!: string;
 
+    @Column()
+    telefone!:string;
+
+    @Column()
+    cpf!: string;
+
+    @Column({type: 'date'})
+    dataNascimento!: Date;
+
     @OneToMany(() => Tarefa, (tarefa) => tarefa.usuario)
     tarefas!: Tarefa[];
+
+    @OneToMany(() => Aluno, (aluno) => aluno.usuario)
+    alunos!: Aluno[];
+
 }
