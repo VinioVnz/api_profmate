@@ -14,6 +14,7 @@ const pagamento_routes_1 = __importDefault(require("./routes/pagamento.routes"))
 const ementas_routes_1 = __importDefault(require("./routes/ementas.routes"));
 const data_source_1 = require("./database/data-source");
 const Usuario_1 = require("./entities/Usuario");
+const ementas_routes_2 = __importDefault(require("./routes/ementas.routes"));
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 data_source_1.AppDataSource.initialize()
@@ -44,6 +45,7 @@ data_source_1.AppDataSource.initialize()
     app.use('/alunos', aluno_routes_1.default);
     app.use('/pagamentos', pagamento_routes_1.default);
     app.use('/progresso', ementas_routes_1.default);
+    app.use('/ementas', ementas_routes_2.default);
     app.listen(process.env.PORT, () => {
         console.log('Servidor rodando na porta: ', process.env.PORT);
     });

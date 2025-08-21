@@ -9,36 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Ementa = void 0;
+exports.Ementas = void 0;
 const typeorm_1 = require("typeorm");
-let Ementa = class Ementa {
+let Ementas = class Ementas {
     id;
     modulo;
     topico;
     descricao;
     concluido;
 };
-exports.Ementa = Ementa;
+exports.Ementas = Ementas;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Ementa.prototype, "id", void 0);
+], Ementas.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Ementa.prototype, "modulo", void 0);
+], Ementas.prototype, "modulo", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Ementa.prototype, "topico", void 0);
+], Ementas.prototype, "topico", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Ementa.prototype, "descricao", void 0);
+], Ementas.prototype, "descricao", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: false }),
     __metadata("design:type", Boolean)
-], Ementa.prototype, "concluido", void 0);
-exports.Ementa = Ementa = __decorate([
+], Ementas.prototype, "concluido", void 0);
+exports.Ementas = Ementas = __decorate([
     (0, typeorm_1.Entity)("ementas")
-], Ementa);
+], Ementas);

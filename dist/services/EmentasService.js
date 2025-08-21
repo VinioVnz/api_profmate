@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmentasService = void 0;
 const data_source_1 = require("../database/data-source");
 const Ementas_1 = require("../entities/Ementas");
-const repo = data_source_1.AppDataSource.getRepository(Ementas_1.Ementa);
+const repo = data_source_1.AppDataSource.getRepository(Ementas_1.Ementas);
 exports.EmentasService = {
     async getAll() {
         return await repo.find();

@@ -19,16 +19,25 @@ exports.AulaService = {
         const aluno = await alunoRepo.findOneBy({ id: data.aluno_id });
         if (!aluno)
             return null;
-        const aula = repo.create({ data: data.data, aluno });
+        const aula = repo.create({ data: data.data, horario: data.horario, aluno });
         await repo.save(aula);
         return aula;
     },
     async update(id, data) {
-        const aula = await repo.findOneBy({ id });
+        const aula = await repo.findOne({ where: { id }, relations: ["aluno"] });
         if (!aula)
             return null;
-        repo.merge(aula, data);
-        repo.save(aula);
+        if (data.data)
+            aula.data = data.data;
+        if (data.horario)
+            aula.horario = data.horario;
+        if (data.aluno_id) {
+            const aluno = await alunoRepo.findOneBy({ id: data.aluno_id });
+            if (!aluno)
+                return null;
+            aula.aluno = aluno;
+        }
+        await repo.save(aula);
         return aula;
     },
     async delete(id) {

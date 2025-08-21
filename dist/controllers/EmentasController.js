@@ -28,12 +28,14 @@ exports.EmentasController = {
     },
     async create(req, res) {
         try {
-            const ementas = await EmentasService_1.EmentasService.create(req.body);
-            if (!ementas)
-                res.status(404).json({ error: notFound });
-            res.status(201).json(ementas);
+            const ementa = await EmentasService_1.EmentasService.create(req.body);
+            if (!ementa) {
+                res.status(400).json({ error: "Erro ao criar a ementa" });
+            }
+            res.status(201).json(ementa);
         }
-        catch {
+        catch (error) {
+            console.error(error);
             res.status(500).json({ error: serverError });
         }
     },
