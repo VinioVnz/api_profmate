@@ -19,50 +19,50 @@ export const TarefaController = {
 
     async getOne(req: Request, res: Response): Promise<void> {
         try {
-            const tarefa = await TarefaService.getOne(Number(req.params.id))
-            if (tarefa!) {
-                res.status(404).json({ error: notFound })
-                res.json(tarefa)
+            const tarefa = await TarefaService.getOne(Number(req.params.id));
+            if (!tarefa) {
+                 res.status(404).json({ error: notFound });
             }
+            res.json(tarefa);
         } catch (error) {
-            res.status(500).json({ eror: serverError })
+            console.log(error);
+            res.status(500).json({ error: serverError });
         }
     },
 
     async create(req: Request, res: Response): Promise<void> {
         try {
             const tarefa = await TarefaService.create(req.body);
-            if (tarefa!) {
-                res.status(404).json({ error: notFound })
-                res.status(201).json(tarefa);
+            if (!tarefa) {
+                res.status(400).json({ error: "Usuário inválido ou dados incompletos" });
             }
-
-        } catch {
-            res.status(500).json({ error: serverError })
+            res.status(201).json(tarefa);
+        } catch (e) {
+            console.log("ERRO: ", e);
+            res.status(500).json({ error: serverError });
         }
     },
 
     async update(req: Request, res: Response): Promise<void> {
         try {
-            const updateData = await TarefaService.update(Number(req.params.id), req.body)
-            if (updateData!) {
-                if (!updateData) {
-                    res.status(404).json({ error: notFound })
-                }
-                res.json('Tarefa editada com sucesso')
+            const updateData = await TarefaService.update(Number(req.params.id), req.body);
+            if (!updateData) {
+                res.status(404).json({ error: notFound });
             }
-        } catch {
-            res.status(500).json({ error: serverError })
+            res.json(updateData); // retorna a tarefa atualizada
+        } catch (e) {
+            console.log(e);
+            res.status(500).json({ error: serverError });
         }
     },
 
     async delete(req: Request, res: Response): Promise<void> {
         const deltarefa = await TarefaService.delete(Number(req.params.id))
         try {
-            if (deltarefa!) {
+            if (!deltarefa) {
                 res.status(404).json({ error: notFound })
-                res.json("Tarefa deletada com sucesso!")
             }
+            res.json("Tarefa deletada com sucesso!")
         } catch {
             res.status(500).json({ error: serverError })
         }

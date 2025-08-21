@@ -8,20 +8,29 @@ const UsuarioRepo = AppDataSource.getRepository(Usuario)
 export const TarefaService = {
     async getAll(): Promise<Tarefa[]> {
         return await repo.find({
-            relations: ["tarefa"]
+            relations: ["usuario"]
         })
     },
 
     async getOne(id: number): Promise<Tarefa | null> {
         return await repo.findOneBy({ id })
     },
+    async create(data: Partial<Tarefa> & { usuario_id?: number }): Promise<Tarefa | null> {
+        if (!data.usuario_id) {
+            return null;
+        }
 
-    async create(data: { data: string, usuario_id: number }): Promise<Tarefa | null> {
         const usuario = await UsuarioRepo.findOneBy({ id: data.usuario_id });
         if (!usuario) {
-            return null
+            return null;
         }
-        const tarefa = repo.create({ descricao: data.data, usuario });
+
+        const tarefa = repo.create({
+            ...data,
+            usuario, // injeta a entidade do usuário
+            dataEntrega: data.dataEntrega ? new Date(data.dataEntrega) : undefined
+        });
+
         await repo.save(tarefa);
         return tarefa;
     },
