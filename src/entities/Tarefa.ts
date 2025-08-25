@@ -15,6 +15,9 @@ export class Tarefa {
   @Column()
   dataEntrega!: Date;
 
+  @Column()
+  concluida!: boolean;
+  
   @ManyToOne(() => Usuario, (usuario) => usuario.tarefas)
   @JoinColumn({ name: "usuario_id" })
   usuario!: Usuario;

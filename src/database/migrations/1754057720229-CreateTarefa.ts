@@ -25,6 +25,10 @@ export class CreateTarefa1754057720229 implements MigrationInterface {
                     type: "datetime",
                 },
                 {
+                    name: "concluida",
+                    type: "boolean"
+                },
+                {
                     name: "usuario_id",
                     type: "int",
                 },
