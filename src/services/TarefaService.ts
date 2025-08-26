@@ -41,7 +41,7 @@ export const TarefaService = {
             return null;
         }
         repo.merge(tarefa, data)
-        repo.save(tarefa)
+        await repo.save(tarefa)
         return tarefa;
     },
 
