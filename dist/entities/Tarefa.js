@@ -17,6 +17,7 @@ let Tarefa = class Tarefa {
     titulo;
     descricao;
     dataEntrega;
+    concluida;
     usuario;
 };
 exports.Tarefa = Tarefa;
@@ -36,6 +37,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
 ], Tarefa.prototype, "dataEntrega", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Boolean)
+], Tarefa.prototype, "concluida", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Usuario_1.Usuario, (usuario) => usuario.tarefas),
     (0, typeorm_1.JoinColumn)({ name: "usuario_id" }),

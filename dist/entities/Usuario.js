@@ -13,6 +13,7 @@ exports.Usuario = void 0;
 const typeorm_1 = require("typeorm");
 const Tarefa_1 = require("./Tarefa");
 const Aluno_1 = require("./Aluno");
+const Mural_1 = require("./Mural");
 let Usuario = class Usuario {
     id;
     uid;
@@ -24,6 +25,7 @@ let Usuario = class Usuario {
     dataNascimento;
     tarefas;
     alunos;
+    mural;
 };
 exports.Usuario = Usuario;
 __decorate([
@@ -66,6 +68,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => Aluno_1.Aluno, (aluno) => aluno.usuario),
     __metadata("design:type", Array)
 ], Usuario.prototype, "alunos", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => Mural_1.Mural, (mural) => mural.usuario),
+    __metadata("design:type", Array)
+], Usuario.prototype, "mural", void 0);
 exports.Usuario = Usuario = __decorate([
     (0, typeorm_1.Entity)("usuarios")
 ], Usuario);

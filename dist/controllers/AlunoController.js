@@ -7,14 +7,12 @@ const serverError = "Erro ao realizar a operação!";
 exports.AlunoController = {
     async getAll(req, res) {
         try {
-            // pega o UID do Firebase do usuário logado
-            const uid = req.headers.authorization?.replace("Bearer ", "");
-            const alunos = await AlunoService_1.AlunoService.getAll(uid);
-            res.json(alunos);
+            const alunos = await AlunoService_1.AlunoService.getAll();
+            res.status(200).json(alunos);
         }
         catch (error) {
             console.error(error);
-            res.status(500).json({ error: "Erro ao realizar a operação!" });
+            res.status(500).json({ error: "Erro ao buscar os alunos!" });
         }
     },
     async getOne(req, res) {
@@ -30,14 +28,12 @@ exports.AlunoController = {
     },
     async create(req, res) {
         try {
-            // Pega o UID do header Authorization
-            const uid = req.headers.authorization?.replace("Bearer ", "");
-            if (!uid) {
-                res.status(401).json({ error: "Usuário não logado" });
+            const { usuarioId, ...dadosAluno } = req.body;
+            if (!usuarioId) {
+                res.status(400).json({ error: "Usuário não informado" });
                 return;
             }
-            // Cria o aluno passando os dados do body + UID do usuário
-            const aluno = await AlunoService_1.AlunoService.create(req.body, uid);
+            const aluno = await AlunoService_1.AlunoService.create(dadosAluno, usuarioId);
             res.status(201).json(aluno);
         }
         catch (error) {
@@ -47,24 +43,50 @@ exports.AlunoController = {
     },
     async update(req, res) {
         try {
-            const updateData = await AlunoService_1.AlunoService.update(Number(req.params.id), req.body);
-            if (!updateData)
-                res.status(404).json({ error: notFound });
-            res.json('Aluno editado com sucesso');
+            const { usuarioId, ...dadosAluno } = req.body;
+            const idAluno = Number(req.params.id);
+            if (!usuarioId) {
+                res.status(400).json({ error: "Usuário não informado" });
+                return;
+            }
+            if (!idAluno) {
+                res.status(400).json({ error: "ID do aluno não informado" });
+                return;
+            }
+            const alunoAtualizado = await AlunoService_1.AlunoService.update(idAluno, dadosAluno, usuarioId);
+            if (!alunoAtualizado) {
+                res.status(404).json({ error: "Aluno não encontrado" });
+                return;
+            }
+            res.status(200).json(alunoAtualizado);
         }
-        catch {
-            res.status(500).json({ error: serverError });
+        catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Erro ao atualizar o aluno!" });
         }
     },
     async delete(req, res) {
         try {
-            const delAluno = await AlunoService_1.AlunoService.delete(Number(req.params.id));
-            if (!delAluno)
-                res.status(404).json({ error: notFound });
-            res.json("Aluno deletado com sucesso!");
+            const usuarioId = Number(req.query.usuarioId);
+            const idAluno = Number(req.params.id);
+            if (!usuarioId) {
+                res.status(400).json({ error: "Usuário não informado" });
+                return;
+            }
+            if (!idAluno) {
+                res.status(400).json({ error: "ID do aluno não informado" });
+                return;
+            }
+            const deletado = await AlunoService_1.AlunoService.delete(idAluno, usuarioId);
+            if (!deletado) {
+                res.status(404).json({ error: "Aluno não encontrado" });
+                return;
+            }
+            res.status(200).json({ message: "Aluno deletado com sucesso" });
         }
-        catch {
-            res.status(500).json({ error: serverError });
+        catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Erro ao deletar o aluno!" });
         }
     }
 };

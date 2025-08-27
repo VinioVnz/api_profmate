@@ -9,18 +9,25 @@ const UsuarioRepo = data_source_1.AppDataSource.getRepository(Usuario_1.Usuario)
 exports.TarefaService = {
     async getAll() {
         return await repo.find({
-            relations: ["tarefa"]
+            relations: ["usuario"]
         });
     },
     async getOne(id) {
         return await repo.findOneBy({ id });
     },
     async create(data) {
+        if (!data.usuario_id) {
+            return null;
+        }
         const usuario = await UsuarioRepo.findOneBy({ id: data.usuario_id });
         if (!usuario) {
             return null;
         }
-        const tarefa = repo.create({ descricao: data.data, usuario });
+        const tarefa = repo.create({
+            ...data,
+            usuario, // injeta a entidade do usuário
+            dataEntrega: data.dataEntrega ? new Date(data.dataEntrega) : undefined
+        });
         await repo.save(tarefa);
         return tarefa;
     },
@@ -30,7 +37,7 @@ exports.TarefaService = {
             return null;
         }
         repo.merge(tarefa, data);
-        repo.save(tarefa);
+        await repo.save(tarefa);
         return tarefa;
     },
     async delete(id) {

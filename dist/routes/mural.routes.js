@@ -1,1 +1,11 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const MuralController_1 = require("../controllers/MuralController");
+const routes = (0, express_1.Router)();
+routes.get('/', MuralController_1.MuralController.getAll);
+routes.get('/:id', MuralController_1.MuralController.getOne);
+routes.post('/', MuralController_1.MuralController.create);
+routes.put('/:id', MuralController_1.MuralController.update);
+routes.delete('/:id', MuralController_1.MuralController.delete);
+exports.default = routes;

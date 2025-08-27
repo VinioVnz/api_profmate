@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Tarefa } from "./Tarefa";
 import { Aluno } from "./Aluno";
+import { Mural } from "./Mural";
 
 @Entity("usuarios")
 export class Usuario {
@@ -32,5 +33,9 @@ export class Usuario {
 
     @OneToMany(() => Aluno, (aluno) => aluno.usuario)
     alunos!: Aluno[];
+
+    @OneToMany(() => Mural, (mural) =>mural.usuario)
+    mural!: Mural[];
+   
 
 }

@@ -11,6 +11,8 @@ import tarefasRoutes from './routes/tarefa.routes'
 import { AppDataSource } from "./database/data-source";
 import { Usuario } from "./entities/Usuario";
 import ementasRoutes from './routes/ementas.routes';
+import muralRoutes from './routes/mural.routes';
+
 const bcrypt = require('bcrypt')
 require('dotenv').config();
 
@@ -47,6 +49,7 @@ AppDataSource.initialize()
         app.use('/progresso', progressoRoutes)
         app.use('/ementas', ementasRoutes)
         app.use('/tarefas', tarefasRoutes)
+        app.use('/mural', muralRoutes)
         app.listen(process.env.PORT, () => {
             console.log('Servidor rodando na porta: ', process.env.PORT);
 
