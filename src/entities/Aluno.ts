@@ -25,10 +25,10 @@ export class Aluno {
   @Column()
   dataNascimento!: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   nomeResponsavel!: string;
 
-  @Column({nullable: true})
+  @Column({ nullable: true })
   cpfResponsavel!: string;
 
   @OneToMany(() => Aula, aula => aula.aluno)
@@ -39,5 +39,7 @@ export class Aluno {
 
   @ManyToOne(() => Usuario, (usuario) => usuario.alunos)
   @JoinColumn({ name: "usuario_id" })
-    usuario!: Usuario;
+  usuario!: Usuario;
+  @Column({ name: "usuario_id" })
+  usuarioId!: number;
 }

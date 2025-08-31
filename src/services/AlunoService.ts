@@ -8,10 +8,10 @@ const pagamentoRepo = AppDataSource.getRepository(Pagamento)
 const userRepo = AppDataSource.getRepository(Usuario)
 export const AlunoService = {
 
-      async getAll(): Promise<Aluno[]> {
+    async getAll(): Promise<Aluno[]> {
         return await repo.find({
             relations: ["pagamentos", "usuario"],
-            
+
         });
     },
 
@@ -34,12 +34,22 @@ export const AlunoService = {
 
     async update(id: number, data: Partial<Aluno>): Promise<Aluno | null> {
         const aluno = await repo.findOne({
-            where: { id}
+            where: { id },
+            relations: ['usuario', 'pagamentos']
         });
+
         if (!aluno) return null;
-       // console.log(aluno);
-        //console.log(data);
-        repo.merge(aluno, data);
+
+        if (data.usuarioId) {
+            const usuario = await userRepo.findOneBy({ id: data.usuarioId });
+            if (!usuario) throw new Error("Usuário não encontrado");
+            aluno.usuario = usuario;
+            aluno.usuarioId = usuario.id;
+        }
+
+        const { usuario, ...rest } = data;
+        Object.assign(aluno, rest);
+
         await repo.save(aluno);
         return aluno;
     },
