@@ -41,11 +41,7 @@ export class CreateUser1752535817960 implements MigrationInterface {
                         type:"varchar",
                         isUnique:true
                     },
-                     {
-                        name:"dataNascimento",
-                        type:"datetime",
-                    },
-                    
+                
                 ]
             })
         )

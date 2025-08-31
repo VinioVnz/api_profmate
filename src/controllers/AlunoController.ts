@@ -45,20 +45,15 @@ export const AlunoController = {
 
     async update(req: Request, res: Response): Promise<void> {
         try {
-            const { usuarioId, ...dadosAluno } = req.body;
+            const dadosAluno = req.body; // recebe o JSON direto
             const idAluno = Number(req.params.id);
-
-            if (!usuarioId) {
-                res.status(400).json({ error: "Usuário não informado" });
-                return;
-            }
 
             if (!idAluno) {
                 res.status(400).json({ error: "ID do aluno não informado" });
                 return;
             }
 
-            const alunoAtualizado = await AlunoService.update(idAluno, dadosAluno, usuarioId);
+            const alunoAtualizado = await AlunoService.update(idAluno, dadosAluno);
 
             if (!alunoAtualizado) {
                 res.status(404).json({ error: "Aluno não encontrado" });
@@ -72,22 +67,18 @@ export const AlunoController = {
         }
     },
 
+
     async delete(req: Request, res: Response): Promise<void> {
         try {
-            const usuarioId = Number(req.query.usuarioId);
             const idAluno = Number(req.params.id);
 
-            if (!usuarioId) {
-                res.status(400).json({ error: "Usuário não informado" });
-                return;
-            }
 
             if (!idAluno) {
                 res.status(400).json({ error: "ID do aluno não informado" });
                 return;
             }
 
-            const deletado = await AlunoService.delete(idAluno, usuarioId);
+            const deletado = await AlunoService.delete(idAluno);
 
             if (!deletado) {
                 res.status(404).json({ error: "Aluno não encontrado" });

@@ -32,20 +32,21 @@ export const AlunoService = {
         return aluno;
     },
 
-    async update(id: number, data: Partial<Aluno>, usuarioId: number): Promise<Aluno | null> {
+    async update(id: number, data: Partial<Aluno>): Promise<Aluno | null> {
         const aluno = await repo.findOne({
-            where: { id, usuario: { id: usuarioId } }
+            where: { id}
         });
         if (!aluno) return null;
-
+       // console.log(aluno);
+        //console.log(data);
         repo.merge(aluno, data);
         await repo.save(aluno);
         return aluno;
     },
 
-    async delete(id: number, usuarioId: number): Promise<boolean> {
+    async delete(id: number): Promise<boolean> {
         const aluno = await repo.findOne({
-            where: { id, usuario: { id: usuarioId } },
+            where: { id },
             relations: ["pagamentos"]
         });
 
