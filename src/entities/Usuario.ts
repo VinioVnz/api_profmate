@@ -25,9 +25,6 @@ export class Usuario {
     @Column()
     cpf!: string;
 
-    @Column({type: 'date'})
-    dataNascimento!: Date;
-
     @OneToMany(() => Tarefa, (tarefa) => tarefa.usuario)
     tarefas!: Tarefa[];
 
