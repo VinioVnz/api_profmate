@@ -43,7 +43,7 @@ export class CreateMural1756299500227 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("murais");
+        await queryRunner.dropTable("mural");
     }
 
 }
