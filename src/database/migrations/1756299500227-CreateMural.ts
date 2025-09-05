@@ -31,7 +31,7 @@ export class CreateMural1756299500227 implements MigrationInterface {
                     })
                 )
                 await queryRunner.createForeignKey(
-                    "murais",
+                    "mural",
                     new TableForeignKey({
                         columnNames: ["usuario_id"],
                         referencedTableName: "usuarios",
