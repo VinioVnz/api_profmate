@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany, IsNull, ManyToOne, J
 import { Aula } from "./Aula";
 import { Pagamento } from "./Pagamento";
 import { Usuario } from "./Usuario";
+import { Ementas } from "./Ementas";
 @Entity("alunos")
 export class Aluno {
   @PrimaryGeneratedColumn()
@@ -36,7 +37,9 @@ export class Aluno {
 
   @OneToMany(() => Pagamento, (pagamento) => pagamento.aluno)
   pagamentos!: Pagamento[];
-
+  @OneToMany(() => Ementas, (ementa) => ementa.aluno)
+  ementas!: Ementas[];
+  
   @ManyToOne(() => Usuario, (usuario) => usuario.alunos)
   @JoinColumn({ name: "usuario_id" })
   usuario!: Usuario;
